@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Com Sencha ExtJS</title>
+	<!-- <link rel="stylesheet" type="text/css" href="./examples/main.css"/> -->
+	<!-- <link rel="stylesheet" type="text/css" href="./examples/resources/Sencha-Examples/style.css"> -->
+	<script type="text/javascript" src="./ext-all.js"></script>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+
+	Ext.define('Funcionario', {
+		extend: 'Ext.data.Model',
+		fields: [
+			{ name: 'nome'},
+			{ name: 'idade', type: 'int' },
+			{ name: 'salario', type: 'float'},
+			{ name: 'ativo', type: 'boolean' },
+			{ name: 'nasc', type: 'date', dateFormat: 'd/m/Y'},
+			{ name: 'login', type: 'string'},
+			{ name: 'email', type: 'string',
+				convert: function(value, record){
+					return record.get('login') + '@email.com';
+				}
+			}
+		]
+	});
+
+	Ext.onReady(function(){
+		var user = Ext.create('Funcionario', {
+			nome: 'Joao',
+			idade: '26',
+			salario: '3000',
+			nasc: '29/02/1993',
+			login: 'joao',
+			email: 'joao@gmail.com'
+		});
+		console.log(user);
+
+		user.set('login', 'jao');
+
+		console.log(user.get('login'));
+	});
+	
+</script>
+</html>
