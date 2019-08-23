@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Com Sencha ExtJS</title>
+	<!-- <link rel="stylesheet" type="text/css" href="./examples/main.css"/> -->
+	<!-- <link rel="stylesheet" type="text/css" href="./examples/resources/Sencha-Examples/style.css"> -->
+	<script type="text/javascript" src="../ext-all.js"></script>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript">
+
+	Ext.define('Usuario', {
+		nome: '',
+		senha: '',
+
+		constructor :function(options) {
+			Ext.apply(this, options || {});
+			console.log('iniciou construtor');
+		},
+		
+		login: function(){
+			console.log('fazendo login');
+		},
+
+		logout: function(){
+			console.log('fazendo logout');
+		}
+	},
+		// callback
+		function(){
+			console.log('chamando callback');
+		}
+	);
+
+	var usuario = Ext.create('Usuario');
+	usuario.login();
+	usuario.logout();
+
+	var usuarioComConstructor = Ext.create('Usuario', {
+		nome: 'Joao',
+		senha: '1234'
+	});
+
+	console.log(usuarioComConstructor);
+
+</script>
+</html>
