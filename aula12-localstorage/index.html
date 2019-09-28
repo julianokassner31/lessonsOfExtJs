@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../ext-all.js"></script>
+</head>
+<body>
+    <script>
+    Ext.define('Lista', {
+        extend: 'Ext.data.Model',
+
+        fields: [
+            {name:'id', type: 'int'},
+            {name: 'desc', type: 'string'}
+        ]
+    });
+    
+    Ext.define('LocalStore', {
+        extend: 'Ext.data.Store',
+
+        model: 'Lista',
+
+        proxy: {
+            type: 'localstorage',
+            id: 'lista'
+        }
+    });
+
+    Ext.onReady(function(){
+        var store = Ext.create('LocalStore');
+        // store.load();
+        // store.add({desc:'gravar aula 6'});
+        // store.add({desc:'gravar aula 7'});
+        // store.add({desc:'gravar aula 8'});
+
+        // store.sync();
+
+        store.load(
+            function(records, op, success){
+                var lista;
+                for(i=0; i < records.length; i++){
+                    lista = records[i].data;
+                    console.log(lista.id + ' ' + lista.desc);
+                }
+            });
+    });
+    </script>
+</body>
+</html>
